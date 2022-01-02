@@ -6,7 +6,7 @@
   <link href="https://kiki-github1.github.io/atom.xml" rel="self"/>
   
   <link href="https://kiki-github1.github.io/"/>
-  <updated>2022-01-01T09:30:27.116Z</updated>
+  <updated>2022-01-02T14:47:12.723Z</updated>
   <id>https://kiki-github1.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test</title>
+    <link href="https://kiki-github1.github.io/2022/01/02/test/"/>
+    <id>https://kiki-github1.github.io/2022/01/02/test/</id>
+    <published>2022-01-02T14:44:08.000Z</published>
+    <updated>2022-01-02T14:47:12.723Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://kiki-github1.github.io/2022/01/02/%E5%88%86%E7%B1%BB%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BC%B0%E8%AE%A1/"/>
+    <id>https://kiki-github1.github.io/2022/01/02/%E5%88%86%E7%B1%BB%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BC%B0%E8%AE%A1/</id>
+    <published>2022-01-02T13:59:24.933Z</published>
+    <updated>2022-01-02T14:39:23.167Z</updated>
+    
+    <content type="html"><![CDATA[<p>title :分类：基本概念、决策树与模型估计</p><h1 id="分类：基本概念、决策树与模型估计"><a href="#分类：基本概念、决策树与模型估计" class="headerlink" title="分类：基本概念、决策树与模型估计"></a>分类：基本概念、决策树与模型估计</h1><blockquote><ul><li>预备知识</li><li>决策树归纳</li><li>模型过拟合</li><li>分类器的性能评估</li></ul></blockquote><p>目标：1.理解各项指标的作用</p><p>​            2.理解决策树的构造原理</p><p>​            3.实现决策树的优化</p><h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><blockquote><h3 id="一-分类和回归的区别"><a href="#一-分类和回归的区别" class="headerlink" title="一.分类和回归的区别"></a>一.分类和回归的区别</h3><p>分类的数据是离散的，然而回归的数据是连续的。他们都是通过学习获得目标函数，对自变量输入数值得到预测结果，从而得到分类和回归的效果</p><h3 id="二-训练集和检验集"><a href="#二-训练集和检验集" class="headerlink" title="二.训练集和检验集"></a>二.训练集和检验集</h3><p>通过python中的sklearn包将数据分成两各部分。一般情况下，训练集占总共的[^2/3],测试集占[^1/3]。划分的目的是为了更加高效的训练和测试。在不断的情况下优化函数模型。</p><h3 id="三-混淆矩阵"><a href="#三-混淆矩阵" class="headerlink" title="三.混淆矩阵"></a>三.混淆矩阵</h3><p><img src="https://pic4.zhimg.com/80/v2-7537a55ed0b3259f132511736fa65baf_1440w.jpg"></p><ol><li><p>TP(True Positive)：将正类预测为正类数，真实为0，预测也为0</p></li><li><p>FN(False Negative)：将正类预测为负类数，真实为0，预测为1</p></li><li><p>FP(False Positive)：将负类预测为正类数， 真实为1，预测为0</p></li><li><p>TN(True Negative)：将负类预测为负类数，真实为1，预测也为1</p></li></ol><p>  <img src="https://pic1.zhimg.com/80/v2-3c2b09d5606e0be938814c10ca1e4394_1440w.jpg"></p><ol><li>精确率_类别1=a/(a+d+g)</li><li>召回率_类别1=a/(a+b+c)</li></ol></blockquote><h2 id="决策树归纳"><a href="#决策树归纳" class="headerlink" title="决策树归纳"></a>决策树归纳</h2><blockquote><h3 id="一-什么是决策树？"><a href="#一-什么是决策树？" class="headerlink" title="一.什么是决策树？"></a>一.什么是决策树？</h3><p>是一种分类数学模型。他包含了内部节点，叶子节点，根节点。是基于树模型的一种分类方法。通过不断的选择，最终将数据分类。</p><p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.abf38e41a9788447638695a5f1c67bca?rik=vG0ASi0+XGzKzw&riu=http://upload-images.jianshu.io/upload_images/14645088-8935eb283349538f.png&ehk=P/Geb+XlGcURmYPN5CdEMtloSXEG4bFM6J70Cxcvjx0=&risl=&pid=ImgRaw&r=0"></p><h3 id="二-他的创建过程是怎么样的？"><a href="#二-他的创建过程是怎么样的？" class="headerlink" title="二.他的创建过程是怎么样的？"></a>二.他的创建过程是怎么样的？</h3><p>1.Hunt算法：</p><p>Hunt算法通过将训练记录相继划分为较纯的子集，以递归方式建立决策树。设Dt是与结点t相关联的训练记录集，而y = { y1, y2, …, yc}为类标号，Hunt算法的递归定义如下：<br>1.如果Dt中所有的记录都属于同一个类yt，则结点t是叶子结点，用yt标记；</p><p>2.如果Dt中包含多个类的记录，则选择一个属性测试条件，将记录划分为较小的子集。对于测试条件的每个输出，创建一个子女结点，并根据测试结果将Dt中的记录分布到子女结点中，然后对每个子女结点递归地调用该算法；</p><p>对于以上算法，如果属性值的每种组合都在训练集中出现，并且每种组合都具有唯一的类标号，则Hunt算法是有效的。但是但对于大多数的实际情况来讲，这一假设并不现实，因此，需要额外的条件来处理以下情况：<br>1.在第二步，算法所创建的子女结点可能为空，即不存在与这些结点相关联的记录。如果没有一个训练记录包含与这样的结点相关联的属性组合，这种情形就有可能发生。这时，该结点成为叶子结点，类标号为其父结点所关联记录集中类别个数最多的类别；</p><p>2.在第二步，如果与Dt相关联的所有记录都具有相同的属性值（类标号除外），则没有属性可用于进一步划分当前记录集，这时可以采用投票原则（少数服从多数）将当前结点强制为叶结点，其类标号为该结点所关联记录集中类别个数最多的类别；</p><h3 id="三-实现算法过程中的问题"><a href="#三-实现算法过程中的问题" class="headerlink" title="三.实现算法过程中的问题"></a>三.实现算法过程中的问题</h3><p>1.如何进行划分？</p><p>2.什么时候截止划分效果最好?</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后面会解答这几个问题。</span><br></pre></td></tr></table></figure><h3 id="四-属性测试条件的方法"><a href="#四-属性测试条件的方法" class="headerlink" title="四.属性测试条件的方法"></a>四.属性测试条件的方法</h3><p>二元属性：直接分为两份部分</p><p>标称属性：可以随便排列组合</p><p>序数属性：通常使用多路划分</p><p>连续属性：划分不同的区间来计算</p><h3 id="五-划分的指标"><a href="#五-划分的指标" class="headerlink" title="五.划分的指标"></a>五.划分的指标</h3><p>1.基尼值：越小越好</p><p>2.信息熵：越小越好</p><p>3.分类误差：越小越好</p><p>定义自行百度，马上考试了，，，，还在写博客，，，，，</p><p>4.增益率：越大越好</p></blockquote><h1 id="模型过拟合"><a href="#模型过拟合" class="headerlink" title="模型过拟合"></a>模型过拟合</h1><blockquote><h3 id="一-过拟合是什么？"><a href="#一-过拟合是什么？" class="headerlink" title="一.过拟合是什么？"></a>一.过拟合是什么？</h3><p>训练误差过高，泛化误差太大的结果。通俗的来说就是学的太像了，学习模板本来就很片面，导致未知数据分类的效果不好。</p><h3 id="二-如何解这个问题？"><a href="#二-如何解这个问题？" class="headerlink" title="二.如何解这个问题？"></a>二.如何解这个问题？</h3><p>1.剪树枝</p><blockquote><p>先剪枝：对于数据的分支导致剪掉该保留的部分，不该保存的就保持了。有过多的子树。容易导致过拟合，枝叶的阈值不好确定。</p><p>后剪枝：剪掉重复的子树，浪费了大量的计算。</p></blockquote><p>2.属性优化</p><blockquote><p>通过对选择属性进行分类，寻找到最好的分类属性。</p><p>通常剪枝叶的效果要好于属性优化。</p></blockquote></blockquote><h1 id="性能评估"><a href="#性能评估" class="headerlink" title="性能评估"></a>性能评估</h1><p>模型优化会在一个单独的主题设置。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;title :分类：基本概念、决策树与模型估计&lt;/p&gt;
+&lt;h1 id=&quot;分类：基本概念、决策树与模型估计&quot;&gt;&lt;a href=&quot;#分类：基本概念、决策树与模型估计&quot; class=&quot;headerlink&quot; title=&quot;分类：基本概念、决策树与模型估计&quot;&gt;&lt;/a&gt;分类：基本概念</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://kiki-github1.github.io/2022/01/01/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A003/"/>
+    <id>https://kiki-github1.github.io/2022/01/01/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A003/</id>
+    <published>2022-01-01T15:05:35.674Z</published>
+    <updated>2022-01-01T15:22:44.490Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="数据挖掘期末复习"><a href="#数据挖掘期末复习" class="headerlink" title="数据挖掘期末复习"></a>数据挖掘期末复习</h1><p><em><strong>第三章的考试考点：数据探索期间的度量定义：</strong></em></p><p>要点：</p><ul><li>背背背！！！</li><li>背背背！！！</li><li>背背背！！！</li></ul><h2 id="数据探索"><a href="#数据探索" class="headerlink" title="数据探索"></a>数据探索</h2><blockquote><p>1.汇总统计：</p><ul><li>频率 </li></ul><blockquote><p>数据在集合中出现的次数</p></blockquote><ul><li>众数</li></ul><blockquote><p>最高频率的数</p></blockquote><ul><li>百分位数</li></ul><blockquote><p>例如:</p><p>第50个百分位数的值[^x50%] ,使得x的所有值的[^50%]小于[^x50%]</p></blockquote><ul><li>均值</li></ul><blockquote><p>均值是表示一组数据集中趋势的量数，是指在一组数据中所有数据之和再除以这组数据的个数。它是反映数据集中趋势的一项指标</p></blockquote><ul><li>中位数</li></ul><blockquote><p>值集位置的度量</p></blockquote><ul><li>极差</li></ul><blockquote><p>极差 又称范围误差或 全距 (Range)，以R表示，是用来表示统计资料中的 变异量数 (measures of variation)，其 最大值 与最小值之间的 差距 ，即<strong>最大值减最小值后所得之数据</strong>。</p></blockquote><ul><li>方差</li></ul><blockquote><p>方差是在<strong>概率论和统计方差衡量 随机变量 或一组数据时离散程度的度量</strong>。 概率论中方差用来度量 随机变量 和其 数学期望 （即 均值 ）之间的偏离程度。</p></blockquote><ul><li>协方差矩阵</li></ul><blockquote><p>在统计学与概率论中，协方差矩阵（也称离差矩阵、方差-协方差矩阵）是一个矩阵，其i, j 位置的元素是第i 个与第j 个随机变量之间的协方差。 这是从标量随机变量到高维度随机向量的自然推广。</p></blockquote><ul><li>相关矩阵</li></ul><blockquote><p>相关矩阵也叫相<strong>关系数矩阵，</strong>其是由矩阵各列间的 相关系数 构成的。 也就是说，相关矩阵第i行第j列的元素是原矩阵第i列和第j列的相关系数。 相关矩阵的对角元素是1。 相关矩阵是对称矩阵。</p></blockquote><ul><li>倾斜度</li></ul><blockquote><p>分布在均值附近的程度</p></blockquote></blockquote><p>结束，加油：</p><p><img src="01.jpg"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;数据挖掘期末复习&quot;&gt;&lt;a href=&quot;#数据挖掘期末复习&quot; class=&quot;headerlink&quot; title=&quot;数据挖掘期末复习&quot;&gt;&lt;/a&gt;数据挖掘期末复习&lt;/h1&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;第三章的考试考点：数据探索期间的度量定义：&lt;/strong&gt;&lt;/em</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>第一次拥有个人博客</title>
