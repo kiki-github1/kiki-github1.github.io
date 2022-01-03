@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>分类器 | kiki的个人博客</title><meta name="author" content="kiki君"><meta name="copyright" content="kiki君"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="分类器 基于规则的分类器  最近邻分类器  贝叶斯分类器  朴素贝叶斯分类器 贝叶斯信念网络    一.基于规则的分类器 1.规则前件-》规则后件 简单的逻辑。通过联系判断2.原理： 互斥规则：都是互相排斥的穷举规则：拥有任意个组合有序规则：通过优先级排序，会有一个决策表无序规则：通过出发多个不同规则，产生投票。通过投票数量来决定类标号。  3.算法核心：顺序覆盖算法：通过一步一步的查找，按照顺序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分类器">
+<meta property="og:url" content="https://kiki-github1.github.io/2022/01/03/%E5%86%B3%E7%AD%96%E6%A0%91/index.html">
+<meta property="og:site_name" content="kiki的个人博客">
+<meta property="og:description" content="分类器 基于规则的分类器  最近邻分类器  贝叶斯分类器  朴素贝叶斯分类器 贝叶斯信念网络    一.基于规则的分类器 1.规则前件-》规则后件 简单的逻辑。通过联系判断2.原理： 互斥规则：都是互相排斥的穷举规则：拥有任意个组合有序规则：通过优先级排序，会有一个决策表无序规则：通过出发多个不同规则，产生投票。通过投票数量来决定类标号。  3.算法核心：顺序覆盖算法：通过一步一步的查找，按照顺序">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2022-01-03T06:15:53.000Z">
+<meta property="article:modified_time" content="2022-01-03T09:58:23.969Z">
+<meta property="article:author" content="kiki君">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://kiki-github1.github.io/2022/01/03/%E5%86%B3%E7%AD%96%E6%A0%91/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '分类器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-03 17:58:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="kiki的个人博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/%E4%B8%93%E6%A0%8F/"><div class="headline">Articles</div><div class="length-num">6</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">kiki的个人博客</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">分类器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-03T06:15:53.000Z" title="Created 2022-01-03 14:15:53">2022-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-01-03T09:58:23.969Z" title="Updated 2022-01-03 17:58:23">2022-01-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="分类器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="分类器"><a href="#分类器" class="headerlink" title="分类器"></a>分类器</h1><ul>
+<li><p>基于规则的分类器</p>
+</li>
+<li><p>最近邻分类器</p>
+</li>
+<li><p>贝叶斯分类器</p>
+<blockquote>
+<p>朴素贝叶斯分类器</p>
+<p>贝叶斯信念网络</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="一-基于规则的分类器"><a href="#一-基于规则的分类器" class="headerlink" title="一.基于规则的分类器"></a>一.基于规则的分类器</h2><blockquote>
+<h3 id="1-规则前件-》规则后件-简单的逻辑。通过联系判断"><a href="#1-规则前件-》规则后件-简单的逻辑。通过联系判断" class="headerlink" title="1.规则前件-》规则后件 简单的逻辑。通过联系判断"></a>1.规则前件-》规则后件 简单的逻辑。通过联系判断</h3><h3 id="2-原理："><a href="#2-原理：" class="headerlink" title="2.原理："></a>2.原理：</h3><blockquote>
+<p>互斥规则：都是互相排斥的<br>穷举规则：拥有任意个组合<br>有序规则：通过优先级排序，会有一个决策表<br>无序规则：通过出发多个不同规则，产生投票。通过投票数量来决定类标号。</p>
+</blockquote>
+<h3 id="3-算法核心："><a href="#3-算法核心：" class="headerlink" title="3.算法核心："></a>3.算法核心：</h3><p>顺序覆盖算法：通过一步一步的查找，按照顺序覆盖类别。</p>
+</blockquote>
+<h2 id="二-最近邻分类器"><a href="#二-最近邻分类器" class="headerlink" title="二.最近邻分类器"></a>二.最近邻分类器</h2><blockquote>
+<h3 id="1-最近邻分类器是什么？"><a href="#1-最近邻分类器是什么？" class="headerlink" title="1.最近邻分类器是什么？"></a>1.最近邻分类器是什么？</h3><blockquote>
+<p>通过寻找测试集中属性相对接近的所有样例的分类器，</p>
+<p>归纳步：通过数据集训练出模型</p>
+<p>演绎步：通过测试集检验优化模型</p>
+</blockquote>
+<h3 id="2-算法"><a href="#2-算法" class="headerlink" title="2.算法"></a>2.算法</h3><blockquote>
+<p>1.选取k的取值。k:表示要划分集合中元素的个数</p>
+<p>2.通过划分边界获取的范围进行投票。</p>
+<p>3.投票最多的属性，就是该划分区域的类别。</p>
+</blockquote>
+<h3 id="3-特征"><a href="#3-特征" class="headerlink" title="3.特征"></a>3.特征</h3><blockquote>
+<p>1.消极学习方法不需要建立模型，分类测试的开销很大</p>
+<p>2.是基于局部预测，对于噪声特别敏感。</p>
+<p>3.可以生成任意形状的边界，提供更加灵活的模型表示。</p>
+<p>4.要采用适当的预处理</p>
+</blockquote>
+</blockquote>
+<h2 id="三-贝叶斯分类器"><a href="#三-贝叶斯分类器" class="headerlink" title="三.贝叶斯分类器"></a>三.贝叶斯分类器</h2><blockquote>
+<h3 id="1-贝叶斯定理"><a href="#1-贝叶斯定理" class="headerlink" title="1.贝叶斯定理"></a>1.贝叶斯定理</h3><p>统计学中概念，是由贝叶斯定义的一种关于因果概率计算方法的定理。使用在条件概率中：</p>
+<p>先验概率：在事件A发生的情况下，事件B会发生的概率。</p>
+<p>后验概率：在事件B已经发生的情况下，原因事件A发生的概率。</p>
+<h3 id="2-贝叶斯分类器的工作原理"><a href="#2-贝叶斯分类器的工作原理" class="headerlink" title="2.贝叶斯分类器的工作原理"></a>2.贝叶斯分类器的工作原理</h3><p>通过前后概率的联系，从而获取条件概率发生的情况。</p>
+<p>1.首先通过已有数据集合，筛选不同属性下预测值的先验概率。</p>
+<p>2.删除预测值</p>
+<p>3.通过计算不同属性的的后验概率来构建树结构。</p>
+<h3 id="3-朴素贝叶斯模型"><a href="#3-朴素贝叶斯模型" class="headerlink" title="3.朴素贝叶斯模型"></a>3.朴素贝叶斯模型</h3><p>通过贝叶斯定理找到使得预测概率最大的属性，然后确定主要原因的属性就够了。</p>
+<p>原理和上述一样。</p>
+<blockquote>
+<p>连续数据：划出分区，通过概率论得知，通过拟合某种概率分布模型，这种概率模型通常是高斯分布，计算在某一区间的积分，就得出了其概率大小。</p>
+<p>离散数据：通过数据集中离散数据统计得出即可。</p>
+</blockquote>
+<p>对于出现先验概率或者后验概率等于零的情况，可以使用m估计。他是一种健壮的概率估计方法。</p>
+<p>计算误差：</p>
+<p>​        通过计算两个属性正态分布下相交的积分数值。</p>
+<h3 id="4-贝叶斯神经网络"><a href="#4-贝叶斯神经网络" class="headerlink" title="4.贝叶斯神经网络"></a>4.贝叶斯神经网络</h3><p>是一个有向无环图，</p>
+<p>一个概率表，把各个节点连接在一起</p>
+<blockquote>
+<p>算法：</p>
+<p>通过贝叶斯定理创建一个树形概率结构，每个节点有自己的概率表。</p>
+</blockquote>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">kiki君</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://kiki-github1.github.io/2022/01/03/%E5%86%B3%E7%AD%96%E6%A0%91/">https://kiki-github1.github.io/2022/01/03/%E5%86%B3%E7%AD%96%E6%A0%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/01/02/test/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">test</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">kiki君</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/%E4%B8%93%E6%A0%8F/"><div class="headline">Articles</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/kiki-github1"><i class="fab fa-github"></i><span>github</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">分类器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%9F%BA%E4%BA%8E%E8%A7%84%E5%88%99%E7%9A%84%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">一.基于规则的分类器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A7%84%E5%88%99%E5%89%8D%E4%BB%B6-%E3%80%8B%E8%A7%84%E5%88%99%E5%90%8E%E4%BB%B6-%E7%AE%80%E5%8D%95%E7%9A%84%E9%80%BB%E8%BE%91%E3%80%82%E9%80%9A%E8%BF%87%E8%81%94%E7%B3%BB%E5%88%A4%E6%96%AD"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.规则前件-》规则后件 简单的逻辑。通过联系判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.原理：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E6%A0%B8%E5%BF%83%EF%BC%9A"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.算法核心：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E6%9C%80%E8%BF%91%E9%82%BB%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">二.最近邻分类器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9C%80%E8%BF%91%E9%82%BB%E5%88%86%E7%B1%BB%E5%99%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.最近邻分类器是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%89%B9%E5%BE%81"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.特征</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">三.贝叶斯分类器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.贝叶斯定理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.贝叶斯分类器的工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.朴素贝叶斯模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="toc-number">1.3.4.</span> <span class="toc-text">4.贝叶斯神经网络</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/03/%E5%86%B3%E7%AD%96%E6%A0%91/" title="分类器"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="分类器"/></a><div class="content"><a class="title" href="/2022/01/03/%E5%86%B3%E7%AD%96%E6%A0%91/" title="分类器">分类器</a><time datetime="2022-01-03T06:15:53.000Z" title="Created 2022-01-03 14:15:53">2022-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/test/" title="test"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="test"/></a><div class="content"><a class="title" href="/2022/01/02/test/" title="test">test</a><time datetime="2022-01-02T14:44:08.000Z" title="Created 2022-01-02 22:44:08">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/02/%E5%88%86%E7%B1%BB%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BC%B0%E8%AE%A1/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2022/01/02/%E5%88%86%E7%B1%BB%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E3%80%81%E5%86%B3%E7%AD%96%E6%A0%91%E4%B8%8E%E6%A8%A1%E5%9E%8B%E4%BC%B0%E8%AE%A1/" title="No title">No title</a><time datetime="2022-01-02T13:59:24.933Z" title="Created 2022-01-02 21:59:24">2022-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/01/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A003/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/2022/01/01/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A003/" title="No title">No title</a><time datetime="2022-01-01T15:05:35.674Z" title="Created 2022-01-01 23:05:35">2022-01-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" title="第一次拥有个人博客"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第一次拥有个人博客"/></a><div class="content"><a class="title" href="/2022/01/01/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/" title="第一次拥有个人博客">第一次拥有个人博客</a><time datetime="2022-01-01T09:00:46.000Z" title="Created 2022-01-01 17:00:46">2022-01-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By kiki君</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

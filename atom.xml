@@ -6,7 +6,7 @@
   <link href="https://kiki-github1.github.io/atom.xml" rel="self"/>
   
   <link href="https://kiki-github1.github.io/"/>
-  <updated>2022-01-02T14:47:12.723Z</updated>
+  <updated>2022-01-03T09:58:23.969Z</updated>
   <id>https://kiki-github1.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分类器</title>
+    <link href="https://kiki-github1.github.io/2022/01/03/%E5%86%B3%E7%AD%96%E6%A0%91/"/>
+    <id>https://kiki-github1.github.io/2022/01/03/%E5%86%B3%E7%AD%96%E6%A0%91/</id>
+    <published>2022-01-03T06:15:53.000Z</published>
+    <updated>2022-01-03T09:58:23.969Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="分类器"><a href="#分类器" class="headerlink" title="分类器"></a>分类器</h1><ul><li><p>基于规则的分类器</p></li><li><p>最近邻分类器</p></li><li><p>贝叶斯分类器</p><blockquote><p>朴素贝叶斯分类器</p><p>贝叶斯信念网络</p></blockquote></li></ul><h2 id="一-基于规则的分类器"><a href="#一-基于规则的分类器" class="headerlink" title="一.基于规则的分类器"></a>一.基于规则的分类器</h2><blockquote><h3 id="1-规则前件-》规则后件-简单的逻辑。通过联系判断"><a href="#1-规则前件-》规则后件-简单的逻辑。通过联系判断" class="headerlink" title="1.规则前件-》规则后件 简单的逻辑。通过联系判断"></a>1.规则前件-》规则后件 简单的逻辑。通过联系判断</h3><h3 id="2-原理："><a href="#2-原理：" class="headerlink" title="2.原理："></a>2.原理：</h3><blockquote><p>互斥规则：都是互相排斥的<br>穷举规则：拥有任意个组合<br>有序规则：通过优先级排序，会有一个决策表<br>无序规则：通过出发多个不同规则，产生投票。通过投票数量来决定类标号。</p></blockquote><h3 id="3-算法核心："><a href="#3-算法核心：" class="headerlink" title="3.算法核心："></a>3.算法核心：</h3><p>顺序覆盖算法：通过一步一步的查找，按照顺序覆盖类别。</p></blockquote><h2 id="二-最近邻分类器"><a href="#二-最近邻分类器" class="headerlink" title="二.最近邻分类器"></a>二.最近邻分类器</h2><blockquote><h3 id="1-最近邻分类器是什么？"><a href="#1-最近邻分类器是什么？" class="headerlink" title="1.最近邻分类器是什么？"></a>1.最近邻分类器是什么？</h3><blockquote><p>通过寻找测试集中属性相对接近的所有样例的分类器，</p><p>归纳步：通过数据集训练出模型</p><p>演绎步：通过测试集检验优化模型</p></blockquote><h3 id="2-算法"><a href="#2-算法" class="headerlink" title="2.算法"></a>2.算法</h3><blockquote><p>1.选取k的取值。k:表示要划分集合中元素的个数</p><p>2.通过划分边界获取的范围进行投票。</p><p>3.投票最多的属性，就是该划分区域的类别。</p></blockquote><h3 id="3-特征"><a href="#3-特征" class="headerlink" title="3.特征"></a>3.特征</h3><blockquote><p>1.消极学习方法不需要建立模型，分类测试的开销很大</p><p>2.是基于局部预测，对于噪声特别敏感。</p><p>3.可以生成任意形状的边界，提供更加灵活的模型表示。</p><p>4.要采用适当的预处理</p></blockquote></blockquote><h2 id="三-贝叶斯分类器"><a href="#三-贝叶斯分类器" class="headerlink" title="三.贝叶斯分类器"></a>三.贝叶斯分类器</h2><blockquote><h3 id="1-贝叶斯定理"><a href="#1-贝叶斯定理" class="headerlink" title="1.贝叶斯定理"></a>1.贝叶斯定理</h3><p>统计学中概念，是由贝叶斯定义的一种关于因果概率计算方法的定理。使用在条件概率中：</p><p>先验概率：在事件A发生的情况下，事件B会发生的概率。</p><p>后验概率：在事件B已经发生的情况下，原因事件A发生的概率。</p><h3 id="2-贝叶斯分类器的工作原理"><a href="#2-贝叶斯分类器的工作原理" class="headerlink" title="2.贝叶斯分类器的工作原理"></a>2.贝叶斯分类器的工作原理</h3><p>通过前后概率的联系，从而获取条件概率发生的情况。</p><p>1.首先通过已有数据集合，筛选不同属性下预测值的先验概率。</p><p>2.删除预测值</p><p>3.通过计算不同属性的的后验概率来构建树结构。</p><h3 id="3-朴素贝叶斯模型"><a href="#3-朴素贝叶斯模型" class="headerlink" title="3.朴素贝叶斯模型"></a>3.朴素贝叶斯模型</h3><p>通过贝叶斯定理找到使得预测概率最大的属性，然后确定主要原因的属性就够了。</p><p>原理和上述一样。</p><blockquote><p>连续数据：划出分区，通过概率论得知，通过拟合某种概率分布模型，这种概率模型通常是高斯分布，计算在某一区间的积分，就得出了其概率大小。</p><p>离散数据：通过数据集中离散数据统计得出即可。</p></blockquote><p>对于出现先验概率或者后验概率等于零的情况，可以使用m估计。他是一种健壮的概率估计方法。</p><p>计算误差：</p><p>​        通过计算两个属性正态分布下相交的积分数值。</p><h3 id="4-贝叶斯神经网络"><a href="#4-贝叶斯神经网络" class="headerlink" title="4.贝叶斯神经网络"></a>4.贝叶斯神经网络</h3><p>是一个有向无环图，</p><p>一个概率表，把各个节点连接在一起</p><blockquote><p>算法：</p><p>通过贝叶斯定理创建一个树形概率结构，每个节点有自己的概率表。</p></blockquote></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;分类器&quot;&gt;&lt;a href=&quot;#分类器&quot; class=&quot;headerlink&quot; title=&quot;分类器&quot;&gt;&lt;/a&gt;分类器&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;基于规则的分类器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;最近邻分类器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;贝叶斯分类器&lt;</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>test</title>
