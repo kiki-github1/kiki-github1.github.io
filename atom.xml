@@ -6,7 +6,7 @@
   <link href="https://kiki-github1.github.io/atom.xml" rel="self"/>
   
   <link href="https://kiki-github1.github.io/"/>
-  <updated>2022-01-07T05:48:28.986Z</updated>
+  <updated>2022-01-12T13:31:03.721Z</updated>
   <id>https://kiki-github1.github.io/</id>
   
   <author>
@@ -17,20 +17,58 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>唐玉霖不说话</title>
+    <title>顺序表的动态形式</title>
+    <link href="https://kiki-github1.github.io/2022/01/12/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%8A%A8%E6%80%81%E5%BD%A2%E5%BC%8F/"/>
+    <id>https://kiki-github1.github.io/2022/01/12/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E5%8A%A8%E6%80%81%E5%BD%A2%E5%BC%8F/</id>
+    <published>2022-01-12T12:52:11.000Z</published>
+    <updated>2022-01-12T13:31:03.721Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>顺序表的静态形式</title>
+    <link href="https://kiki-github1.github.io/2022/01/12/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E9%9D%99%E6%80%81%E5%BD%A2%E5%BC%8F/"/>
+    <id>https://kiki-github1.github.io/2022/01/12/%E9%A1%BA%E5%BA%8F%E8%A1%A8%E7%9A%84%E9%9D%99%E6%80%81%E5%BD%A2%E5%BC%8F/</id>
+    <published>2022-01-12T12:51:53.000Z</published>
+    <updated>2022-01-12T13:31:03.721Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="顺序表的静态实习方式"><a href="#顺序表的静态实习方式" class="headerlink" title="顺序表的静态实习方式"></a>顺序表的静态实习方式</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> Maxsize 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> ElemType;</span><br><span class="line"><span class="comment">//顺序表的静态形式</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建结构体 </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">ElemType data[Maxsize];</span><br><span class="line"><span class="keyword">int</span> length;</span><br><span class="line">&#125;SqList; </span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化顺序表 </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(SqList &amp;L)</span></span>&#123;</span><br><span class="line">L.length = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//是否为空 </span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isempty</span><span class="params">(SqList L)</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> L.length==<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建顺序表 </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createList</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> a[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">L.data[i] = a[i];</span><br><span class="line">L.length++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加方法 </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(SqList &amp;L,ElemType e)</span></span>&#123;</span><br><span class="line">L.data[L.length] = e;</span><br><span class="line">L.length++;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//删除方法 </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delet</span><span class="params">(SqList &amp;L,ElemType &amp;e)</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(L.data[i]!=e)&#123;</span><br><span class="line">i++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(i;i&lt;L.length;i++)&#123;</span><br><span class="line">L.data[i]=L.data[i+<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line">L.length--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//插入方法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">insertList</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> pos,ElemType e)</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(pos&lt;<span class="number">0</span> || pos &gt; L.length) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">pos = pos<span class="number">-1</span>;</span><br><span class="line">L.length++;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=L.length<span class="number">-1</span>;i&gt;=pos;i--)&#123;</span><br><span class="line">L.data[i] = L.data[i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line">L.data[pos] = e;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//预览函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(SqList L)</span></span>&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;L.length;i++)&#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,L.data[i]);</span><br><span class="line">&#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//测试函数 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>] = &#123;<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">67</span>,<span class="number">34</span>&#125;;</span><br><span class="line">SqList L;</span><br><span class="line">ElemType e;</span><br><span class="line"><span class="built_in">init</span>(L);</span><br><span class="line"><span class="built_in">createList</span>(L,a,<span class="number">10</span>);</span><br><span class="line"><span class="built_in">show</span>(L);</span><br><span class="line"><span class="built_in">add</span>(L,<span class="number">3242</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"><span class="built_in">show</span>(L);</span><br><span class="line">e = <span class="number">34</span>;</span><br><span class="line"><span class="built_in">delet</span>(L,e);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"><span class="built_in">show</span>(L);</span><br><span class="line"><span class="built_in">insertList</span>(L,<span class="number">2</span>,<span class="number">666</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"><span class="built_in">show</span>(L);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li><p>优点：</p><p>对于查询数据方便</p></li><li><p>缺点：</p><p>不利于删除和添加，修改，长度使用的容量是固定的(通过实现动态化，使得可以进行扩容)。</p><h1 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h1><p><img src="C:\Users\hn\AppData\Roaming\Typora\typora-user-images\image-20220112205929168.png" alt="image-20220112205929168"></p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;顺序表的静态实习方式&quot;&gt;&lt;a href=&quot;#顺序表的静态实习方式&quot; class=&quot;headerlink&quot; title=&quot;顺序表的静态实习方式&quot;&gt;&lt;/a&gt;顺序表的静态实习方式&lt;/h1&gt;&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>单链表的静态形式</title>
     <link href="https://kiki-github1.github.io/2022/01/07/%E5%94%90%E7%8E%89%E9%9C%96%E4%B8%8D%E8%AF%B4%E8%AF%9D/"/>
     <id>https://kiki-github1.github.io/2022/01/07/%E5%94%90%E7%8E%89%E9%9C%96%E4%B8%8D%E8%AF%B4%E8%AF%9D/</id>
     <published>2022-01-07T05:46:57.000Z</published>
-    <updated>2022-01-07T05:48:28.986Z</updated>
+    <updated>2022-01-12T12:55:11.458Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="我叫唐玉霖"><a href="#我叫唐玉霖" class="headerlink" title="我叫唐玉霖"></a>我叫唐玉霖</h1><p>这是我的名字，我创建了自己的网站，这是我第一次发表的文章。</p><p>略。。。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
     
     
       
       
-    <summary type="html">&lt;h1 id=&quot;我叫唐玉霖&quot;&gt;&lt;a href=&quot;#我叫唐玉霖&quot; class=&quot;headerlink&quot; title=&quot;我叫唐玉霖&quot;&gt;&lt;/a&gt;我叫唐玉霖&lt;/h1&gt;&lt;p&gt;这是我的名字，我创建了自己的网站，这是我第一次发表的文章。&lt;/p&gt;
-&lt;p&gt;略。。。&lt;/p&gt;
-</summary>
+    <summary type="html">&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;/h1&gt;</summary>
       
     
     
@@ -43,7 +81,7 @@
     <link href="https://kiki-github1.github.io/2022/01/04/%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/"/>
     <id>https://kiki-github1.github.io/2022/01/04/%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90/</id>
     <published>2022-01-04T07:43:28.000Z</published>
-    <updated>2022-01-05T08:29:08.405Z</updated>
+    <updated>2022-01-07T05:49:24.029Z</updated>
     
     <content type="html"><![CDATA[<h1 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h1><p>缺失值统计</p><p>检测离群点</p><p>标准化或者正则化</p><p>特征编码</p><p>离散化数据</p><h1 id="划分数据集"><a href="#划分数据集" class="headerlink" title="划分数据集"></a>划分数据集</h1><p>划分测试集和训练集，其中训练集占70%左右。</p><h1 id="创建对应的模型"><a href="#创建对应的模型" class="headerlink" title="创建对应的模型"></a>创建对应的模型</h1><p>1.分类</p><p>2.关联</p><p>3.聚类</p><p>4.回归</p><p>5.集成</p><p>中的选一个对应题目，使用不同的算法。</p><h1 id="优化模型"><a href="#优化模型" class="headerlink" title="优化模型"></a>优化模型</h1><p>1.检测效果</p><blockquote><p>r2</p><p>roc曲线，auc值</p><p>混淆矩阵</p></blockquote><p>2.检测方法</p><blockquote><p>网格调参</p><p>交叉验证</p></blockquote><p>不同算法有不同的参数设置。</p><p>了解参数的意义。</p>]]></content>
     
