@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>java06 | kikiのblog</title><meta name="author" content="kiki"><meta name="copyright" content="kiki"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="单例设计模式 饿汉式：设置只有一个案例的时候使用,可能创建了一个对象，但是没有使用。   1）构造器私有化 2）类的内部类创建对象 3）向外暴露一个静态的公共方法 4）代码实现 123456789101112131415161718192021222324252627public class Test &amp;#123;    public static void main(String[] args)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java06">
+<meta property="og:url" content="https://kiki-github1.github.io/2022/06/22/java06/index.html">
+<meta property="og:site_name" content="kikiのblog">
+<meta property="og:description" content="单例设计模式 饿汉式：设置只有一个案例的时候使用,可能创建了一个对象，但是没有使用。   1）构造器私有化 2）类的内部类创建对象 3）向外暴露一个静态的公共方法 4）代码实现 123456789101112131415161718192021222324252627public class Test &amp;#123;    public static void main(String[] args)">
+<meta property="og:locale">
+<meta property="og:image" content="https://kiki-github1.github.io/img/ut.jpg">
+<meta property="article:published_time" content="2022-06-22T09:50:23.000Z">
+<meta property="article:modified_time" content="2022-07-09T11:27:32.335Z">
+<meta property="article:author" content="kiki">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kiki-github1.github.io/img/ut.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://kiki-github1.github.io/2022/06/22/java06/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'java06',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-09 19:27:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="kikiのblog" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/007.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/%E4%B8%93%E6%A0%8F/"><div class="headline">Articles</div><div class="length-num">21</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/ut.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">kikiのblog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">java06</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-06-22T09:50:23.000Z" title="Created 2022-06-22 17:50:23">2022-06-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-07-09T11:27:32.335Z" title="Updated 2022-07-09 19:27:32">2022-07-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="java06"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h1><ul>
+<li><p>饿汉式：设置只有一个案例的时候使用,可能创建了一个对象，但是没有使用。</p>
+</li>
+<li><blockquote>
+<p>1）构造器私有化</p>
+<p>2）类的内部类创建对象</p>
+<p>3）向外暴露一个静态的公共方法</p>
+<p>4）代码实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//通过类直接调用</span></span><br><span class="line">        GirlFriend gf = GirlFriend.getGf();</span><br><span class="line">        <span class="comment">//输出单例的内容</span></span><br><span class="line">        System.out.println(gf.getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GirlFriend</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">//类中创建对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> GirlFriend gf = <span class="keyword">new</span> GirlFriend(<span class="string">&quot;小小红&quot;</span>);</span><br><span class="line">    <span class="comment">//私有化构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GirlFriend</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//静态获取方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GirlFriend <span class="title">getGf</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> gf;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+<li><p>懒汉式:只有用户调用的时候才使用，且使用后是之前的对象。</p>
+</li>
+<li><blockquote>
+<p>```java<br>public class Test {</p>
+<pre><code>public static void main(String[] args) &#123;
+    Cat cat = Cat.getCat();
+    cat.setName(&quot;ioio&quot;);
+    System.out.println(cat.getName());
+
+    Cat cat1 = new Cat(&quot;jiji&quot;);
+    System.out.println(cat1.getName());
+&#125;
+</code></pre>
+<p>}</p>
+<p>class Cat{</p>
+<pre><code>private String name;
+private static Cat cat;
+
+public String getName() &#123;
+    return name;
+&#125;
+
+public void setName(String name) &#123;
+    this.name = name;
+&#125;
+
+public Cat(String name) &#123;
+    this.name = name;
+&#125;
+
+public static Cat getCat() &#123;
+    if (cat == null)&#123;
+        cat = new Cat(&quot;kiki&quot;);
+    &#125;
+    return cat;
+&#125;
+</code></pre>
+<p>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> ![image-20220706170935964](C:\Users\hn\AppData\Roaming\Typora\typora-user-images\image-20220706170935964.png)</span><br><span class="line"></span><br><span class="line">![image-20220706173738654](C:\Users\hn\AppData\Roaming\Typora\typora-user-images\image-20220706173738654.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># final关键字</span><br><span class="line"></span><br><span class="line">- 使得类不被别人继承</span><br><span class="line">- 让子类不被重写</span><br><span class="line">- 不希望属性值被修改</span><br><span class="line">- 不希望某个局部变量被修改</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">public class Test &#123;</span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">       B b = new B();</span><br><span class="line">//        Cannot assign a value to final variable &#x27;rate&#x27;</span><br><span class="line">       b.rate = 9.8;</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">//A类是不被继承的</span><br><span class="line">class final A&#123;</span><br><span class="line">&#125;</span><br><span class="line">class B extends A&#123;&#125;</span><br><span class="line"></span><br><span class="line">class B&#123;</span><br><span class="line">   //表示比率是不可一改变的</span><br><span class="line">   public final double rate = 0.09;</span><br><span class="line">   </span><br><span class="line">   public final void say()&#123;</span><br><span class="line">       System.out.println(&quot;BBBBB&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class C extends B&#123;</span><br><span class="line">//    &#x27;say()&#x27; cannot override &#x27;say()&#x27; in &#x27;B&#x27;; overridden method is final</span><br><span class="line">   public void say()&#123;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public void cry()&#123;</span><br><span class="line">      final double SUM = 0.9;</span><br><span class="line">//       Cannot assign a value to final variable &#x27;SUM&#x27;</span><br><span class="line">      SUM = 98.0;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></blockquote>
+</li>
+<li><p>细节</p>
+</li>
+<li><blockquote>
+<p>修饰的变量要大写用下划线连接</p>
+<p>在定义，代码快，构造器中赋值</p>
+<p>静态变量不能在构造器中使用</p>
+<p>final类不能继承，但是能实例化对象</p>
+<p>final类严格遵守继承，不能被重写，但是能继承。</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="C:\Users\hn\AppData\Roaming\Typora\typora-user-images\image-20220706180133413.png" alt="image-20220706180133413"></p>
+<h1 id="练习题"><a href="#练习题" class="headerlink" title="练习题"></a>练习题</h1><p><img src="C:\Users\hn\AppData\Roaming\Typora\typora-user-images\image-20220706180323625.png" alt="image-20220706180323625"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//定义法创建</span></span><br><span class="line">        Circle circle = <span class="keyword">new</span> Circle(<span class="number">22</span>);</span><br><span class="line">        System.out.println(circle.area());</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//饿汉式创建</span></span><br><span class="line">        Circle circle1 = Circle.getCircle();</span><br><span class="line">        System.out.println(circle1.area());</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//懒汉式创建</span></span><br><span class="line">        Circle tmp = Circle.getTmp();</span><br><span class="line">        System.out.println(tmp.area());</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> radius;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Circle circle = <span class="keyword">new</span> Circle(<span class="number">89.8</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Circle tmp;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">double</span> PI = <span class="number">3.14</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Circle</span><span class="params">(<span class="keyword">double</span> radius)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.radius = radius;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">area</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> radius*radius*PI;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Circle <span class="title">getCircle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> circle;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Circle <span class="title">getTmp</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (tmp == <span class="keyword">null</span>)&#123;</span><br><span class="line">            tmp = <span class="keyword">new</span> Circle(<span class="number">99</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><ul>
+<li><p>父类的方法不稳定的时候使用</p>
+</li>
+<li><p>没有实现的方法，通过子类实现方法</p>
+</li>
+<li><p>细节：</p>
+</li>
+<li><blockquote>
+<p>抽象类没有实例</p>
+<p>抽象类不一定有抽象方法</p>
+<p>一但拥有了抽象方法，就必须要在抽象类中</p>
+<p>abstract只能修饰类和方法</p>
+<p>抽象类还是类</p>
+<p>继承了抽象类，就要实现他的方法，除非他自己是一个抽象类</p>
+<p>抽象方法不能使用private，static,final关键字来修饰</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        B b = <span class="keyword">new</span> B();</span><br><span class="line">        b.hi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hihihihi&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">kiki</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://kiki-github1.github.io/2022/06/22/java06/">https://kiki-github1.github.io/2022/06/22/java06/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/ut.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/06/22/java05/"><img class="next-cover" src="/img/ut.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">java05</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/007.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">kiki</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/%E4%B8%93%E6%A0%8F/"><div class="headline">Articles</div><div class="length-num">21</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/kiki-github1"><i class="fab fa-github"></i><span>github</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">单例设计模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">练习题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">抽象类</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/22/java06/" title="java06"><img src="/img/ut.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java06"/></a><div class="content"><a class="title" href="/2022/06/22/java06/" title="java06">java06</a><time datetime="2022-06-22T09:50:23.000Z" title="Created 2022-06-22 17:50:23">2022-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/22/java05/" title="java05"><img src="/img/ut.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java05"/></a><div class="content"><a class="title" href="/2022/06/22/java05/" title="java05">java05</a><time datetime="2022-06-22T09:49:47.000Z" title="Created 2022-06-22 17:49:47">2022-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/java04/" title="java04"><img src="/img/ut.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java04"/></a><div class="content"><a class="title" href="/2022/06/20/java04/" title="java04">java04</a><time datetime="2022-06-20T02:35:45.000Z" title="Created 2022-06-20 10:35:45">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/19/java03/" title="java03"><img src="/img/ut.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java03"/></a><div class="content"><a class="title" href="/2022/06/19/java03/" title="java03">java03</a><time datetime="2022-06-19T03:41:08.000Z" title="Created 2022-06-19 11:41:08">2022-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/18/java02/" title="java02"><img src="/img/ut.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="java02"/></a><div class="content"><a class="title" href="/2022/06/18/java02/" title="java02">java02</a><time datetime="2022-06-18T03:37:53.000Z" title="Created 2022-06-18 11:37:53">2022-06-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By kiki</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
